@@ -1,8 +1,9 @@
 <template>
   <div class="trendingFeed">
+    <h1>Hi there</h1>
     <ul>
       <Post
-        v-for="post in posts" :key="post.id"
+        v-for="post of this.posts" :key="post.id"
         v-bind:post="post"
       />
     </ul>
@@ -10,21 +11,21 @@
 </template>
 
 <script>
-
-
+import getPosts from '../services/postService'
 import Post from "./Post";
 
 
 export default({
   name: "TrendingFeed",
-  //props: ['posts'],
   data: function(){
     return{posts: []}
   },
   components: {
     Post,
   },
-
+  created(){
+    this.posts = getPosts()
+  },
 });
 </script>
 
@@ -37,5 +38,9 @@ export default({
   padding: 0;
   transform: translate3d(0, 0, 0);
   transition: transform 200ms ease;
+}
+
+ul{
+  list-style: none;
 }
 </style>

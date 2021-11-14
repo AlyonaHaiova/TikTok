@@ -1,25 +1,30 @@
 <template>
+  <div class = "post">
     <li>
-      <!--<User/>-->
+     <!-- <span>
+        <img class = "profilePhoto" v-bind:src = post.user.photo />
+        <h2>{{post.user.nickname}}</h2>
+      </span>-->
+      {{post.user}}
       <h5>{{post.date}}</h5>
       <h3>{{post.text}}</h3>
-      <!--<video :src="video" ref="vidRef" @click="togglePlay" />-->
-      <video class = "video" v-bind:src = post.video />
+      <video class = "video" v-bind:src = post.video ref="vidRef" @click="togglePlay" />
       <!--<Hashtag/>-->
       <ul id="hashtagsList">
         <li v-for="tag in post.hashtags" :key="tag.name">
           {{ tag.name }}
         </li>
       </ul>
-      <span> {{post.likes}} {{post.comments}}</span>
+      <span> likes: {{post.likes}}  comments: {{post.comments}}</span>
     </li>
+  </div>
 </template>
 
 <script>
-//import { ref, reactive } from "vue";
+import { ref, reactive } from "vue";
 //import Hashtag from "./Hashtag";
 //import User from "./User";
-import getPost from '../services/postService'
+
 
 export default {
   name: "post",
@@ -27,24 +32,15 @@ export default {
     //Hashtag,
     //User
   },
-  data: function(){
-    return{post: {}}
-  },
-  /*
   props: {
-    video: String,
-    date: Date,
-    text: String,
-    likes: Number,
-    comments: Number,
-    hashtags: Array
+    post: Object,
   },
-  */
 
   created() {
-    this.post = getPost()
+    //this.User = this.post.user
   },
-  /*
+
+
   setup() {
     const vidRef = ref(null);
     const state = reactive({
@@ -73,7 +69,7 @@ export default {
       state,
     };
   },
-*/
+
 };
 </script>
 
@@ -84,9 +80,19 @@ export default {
   height: 100%;
 }
 video{
-  width: 100%;
+  width: 50%;
   height: auto;
   position: relative;
+}
+
+ul{
+  list-style: none;
+}
+
+.profilePhoto{
+  width: 5%;
+  height: auto;
+  border-radius: 50%;
 }
 
 </style>

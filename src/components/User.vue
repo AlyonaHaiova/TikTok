@@ -26,7 +26,7 @@ export default {
 
 <style scoped>
 .profilePhoto{
-  width: 15%;
+  width: 5%;
   height: auto;
   border-radius: 50%;
 }
