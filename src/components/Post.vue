@@ -1,28 +1,36 @@
 <template>
-  <div class="post">
     <li>
-      <User/>
-      <h5>{{date}}</h5>
-      <h3>{{text}}</h3>
-      <video :src="video" ref="vidRef" @click="togglePlay" />
-      <Hashtag/>
-      <span> {{likes}} {{comments}}</span>
+      <!--<User/>-->
+      <h5>{{post.date}}</h5>
+      <h3>{{post.text}}</h3>
+      <!--<video :src="video" ref="vidRef" @click="togglePlay" />-->
+      <video class = "video" v-bind:src = post.video />
+      <!--<Hashtag/>-->
+      <ul id="hashtagsList">
+        <li v-for="tag in post.hashtags" :key="tag.name">
+          {{ tag.name }}
+        </li>
+      </ul>
+      <span> {{post.likes}} {{post.comments}}</span>
     </li>
-  </div>
 </template>
 
 <script>
-import { ref, reactive } from "vue";
-import Hashtag from "@/components/Hashtag";
-import User from "@/components/User";
-
+//import { ref, reactive } from "vue";
+//import Hashtag from "./Hashtag";
+//import User from "./User";
+import getPost from '../services/postService'
 
 export default {
   name: "post",
   components: {
-    Hashtag,
-    User
+    //Hashtag,
+    //User
   },
+  data: function(){
+    return{post: {}}
+  },
+  /*
   props: {
     video: String,
     date: Date,
@@ -31,6 +39,12 @@ export default {
     comments: Number,
     hashtags: Array
   },
+  */
+
+  created() {
+    this.post = getPost()
+  },
+  /*
   setup() {
     const vidRef = ref(null);
     const state = reactive({
@@ -59,7 +73,7 @@ export default {
       state,
     };
   },
-
+*/
 };
 </script>
 
@@ -69,7 +83,7 @@ export default {
   width: 100%;
   height: 100%;
 }
-video {
+video{
   width: 100%;
   height: auto;
   position: relative;

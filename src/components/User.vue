@@ -1,22 +1,33 @@
 <template>
   <div>
     <span>
-      <img src = "photoUrl">
-      <h2>{name}</h2>
+      <img class = "profilePhoto" v-bind:src = user.photo />
+      <h2>{{user.nickname}}</h2>
     </span>
   </div>
 </template>
 
 <script>
+
+import getUser from '../services/userService'
+
 export default {
   name: "User",
-  props: {
-    photoUrl: String,
-    name: String
+  data: function () {
+    return {
+      user: {}
+    }
+  },
+  created(){
+    this.user = getUser()
   }
 };
 </script>
 
 <style scoped>
-
+.profilePhoto{
+  width: 15%;
+  height: auto;
+  border-radius: 50%;
+}
 </style>

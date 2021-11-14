@@ -2,7 +2,7 @@
   <div class="trendingFeed">
     <ul>
       <Post
-        v-for="post in posts"
+        v-for="post in posts" :key="post.id"
         v-bind:post="post"
       />
     </ul>
@@ -12,12 +12,15 @@
 <script>
 
 
-import Post from "./Post.vue";
+import Post from "./Post";
 
 
 export default({
   name: "TrendingFeed",
-  props: ['posts'],
+  //props: ['posts'],
+  data: function(){
+    return{posts: []}
+  },
   components: {
     Post,
   },

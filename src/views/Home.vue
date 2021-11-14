@@ -7,12 +7,11 @@
 <script>
 
 
-import TrendingFeed from "@/components/TrendingFeed";
+import TrendingFeed from "../components/TrendingFeed";
 export default {
   name: "Home",
   components: {
     TrendingFeed
-
   },
 };
 </script>

@@ -2,7 +2,7 @@ const getPost = () => {
   const post = {
     id: 1,
     text: 'That was an amazing holiday',
-    video: '/public/img/video/v1.mp4',
+    video: 'img/video/v1.mp4',
     likes: Math.floor(Math.random() * 100),
     comments: Math.floor(Math.random() * 100),
     date: Date.now(),
@@ -21,3 +21,6 @@ const getHashtags = () => {
     {id: 5, name: 'no filters'},]
   return hashtags
 }
+
+export default getPost
+
