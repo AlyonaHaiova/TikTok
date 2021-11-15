@@ -1,6 +1,5 @@
 <template>
   <div class="trendingFeed">
-    <h1>Hi there</h1>
     <ul>
       <Post
         v-for="post of this.posts" :key="post.id"

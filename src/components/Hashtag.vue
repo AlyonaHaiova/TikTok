@@ -1,5 +1,5 @@
 <template>
-  <div>#hashtag</div>
+  <div>#{{this.name}}}</div>
 </template>
 
 <script>

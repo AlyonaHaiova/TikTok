@@ -1,7 +1,7 @@
-import getUser from "./userService";
 import getHashtags from "./hashtagService"
 
-const getPost = () => {
+
+const getUserPost = (user) => {
   const post = {
     id: 1,
     text: 'That was an amazing holiday',
@@ -10,17 +10,17 @@ const getPost = () => {
     comments: Math.floor(Math.random() * 100),
     publishedAt:  new Date(2021, 12, 15, 17, 23, 42),
     hashtags: getHashtags,
-    user: getUser()
+    user: user
   }
   return post
 }
 
-const getPosts = () => {
+const getUserPosts = (user) => {
   const posts = []
   for (let i = 0; i < 10; i++){
-    posts.push(getPost())
+    posts.push(getUserPost(user))
   }
   return posts
 }
-export default getPosts
 
+export {getUserPosts}

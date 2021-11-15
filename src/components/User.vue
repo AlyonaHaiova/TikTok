@@ -1,8 +1,10 @@
 <template>
-  <div>
+  <div class = "user">
     <span>
-      <img class = "profilePhoto" v-bind:src = user.photo />
-      <h2>{{user.nickname}}</h2>
+      <div class = "imageWrapper">
+        <img class = "profilePhoto" v-bind:src = user.photo />
+      </div>
+    <p id = "nickname">{{user.nickname}}</p>
     </span>
   </div>
 </template>
@@ -25,9 +27,25 @@ export default {
 </script>
 
 <style scoped>
-.profilePhoto{
-  width: 5%;
-  height: auto;
+.user{
+  display: flex;
+  justify-content: center;
+}
+.imageWrapper{
+  width: 100px;
+  height: 100px;
+  position: relative;
+  overflow: hidden;
   border-radius: 50%;
+}
+.profilePhoto{
+  display: inline;
+  margin: 0 auto;
+  height: auto;
+  width: 100%;
+}
+
+#nickname{
+
 }
 </style>

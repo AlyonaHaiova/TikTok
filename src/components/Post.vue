@@ -1,21 +1,20 @@
 <template>
   <div class = "post">
     <li>
-     <!-- <span>
-        <img class = "profilePhoto" v-bind:src = post.user.photo />
-        <h2>{{post.user.nickname}}</h2>
-      </span>-->
-      {{post.user}}
-      <h5>{{post.date}}</h5>
-      <h3>{{post.text}}</h3>
-      <video class = "video" v-bind:src = post.video ref="vidRef" @click="togglePlay" />
-      <!--<Hashtag/>-->
-      <ul id="hashtagsList">
-        <li v-for="tag in post.hashtags" :key="tag.name">
-          {{ tag.name }}
-        </li>
-      </ul>
-      <span> likes: {{post.likes}}  comments: {{post.comments}}</span>
+      <Loader v-if= "loading"/>
+      <div v-else class = "content">
+        <h5>{{post.publishedAt}}</h5>
+        <User v-bind:content="this.user" v-on:click="goToProfile(this.user)"/>
+        <h3>{{post.text}}</h3>
+        <video class = "video" v-bind:src = post.video ref="vidRef" @click="togglePlay" />
+        <!--<Hashtag/>-->
+        <ul id="hashtagsList">
+            <li class = "hashtag" v-for="tag in post.hashtags" :key="tag.name">
+              {{ tag.name }}
+          </li>
+        </ul>
+        <span> likes: {{post.likes}}  comments: {{post.comments}}</span>
+      </div>
     </li>
   </div>
 </template>
@@ -23,23 +22,42 @@
 <script>
 import { ref, reactive } from "vue";
 //import Hashtag from "./Hashtag";
-//import User from "./User";
+import User from "./User";
+import Loader from "./Loader";
+import router from "../router/index"
 
 
 export default {
   name: "post",
   components: {
+    Loader,
     //Hashtag,
-    //User
+    User
   },
   props: {
     post: Object,
   },
 
-  created() {
-    //this.User = this.post.user
+  data() {
+    return{
+      loading: true
+    }
   },
 
+  mounted() {
+    this.loading = false
+  },
+
+  methods:{
+    goToProfile(user){
+      router.push({
+        name: 'Profile',
+        params: {
+          propUser : user
+        }
+    })
+    }
+  },
 
   setup() {
     const vidRef = ref(null);
@@ -93,6 +111,10 @@ ul{
   width: 5%;
   height: auto;
   border-radius: 50%;
+}
+
+.hashtag{
+  color: blue;
 }
 
 </style>
