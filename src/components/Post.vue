@@ -3,17 +3,22 @@
     <li>
       <Loader v-if= "loading"/>
       <div v-else class = "content">
-        <h5>{{post.publishedAt}}</h5>
-        <User v-bind:content="this.user" v-on:click="goToProfile(this.user)"/>
-        <h3>{{post.text}}</h3>
+        <User v-bind:user="post.user" v-on:click="goToProfile"/>
+        <p id = "date">{{post.publishedAt}}</p>
+        <p class = "text">{{post.text}}</p>
         <video class = "video" v-bind:src = post.video ref="vidRef" @click="togglePlay" />
         <!--<Hashtag/>-->
-        <ul id="hashtagsList">
+        <span class = "hashtags" v-for="tag in post.hashtags" :key="tag.name">{{ tag.name + '        '}}</span>
+        <!--<ul id="hashtagsList">
             <li class = "hashtag" v-for="tag in post.hashtags" :key="tag.name">
               {{ tag.name }}
           </li>
-        </ul>
-        <span> likes: {{post.likes}}  comments: {{post.comments}}</span>
+        </ul>-->
+        <br>
+        <span class = 'reactions'>
+          <img id = "like" src = "../../public/img/icons/like.svg"/> {{'   ' + post.likes}}
+          <img id = "comment" src = "../../public/img/icons/comment.svg"/>{{'   ' + post.comments}}
+        </span>
       </div>
     </li>
   </div>
@@ -24,7 +29,7 @@ import { ref, reactive } from "vue";
 //import Hashtag from "./Hashtag";
 import User from "./User";
 import Loader from "./Loader";
-import router from "../router/index"
+//import router from "../router/index"
 
 
 export default {
@@ -43,17 +48,16 @@ export default {
       loading: true
     }
   },
-
   mounted() {
     this.loading = false
   },
 
   methods:{
-    goToProfile(user){
-      router.push({
+    goToProfile(){
+      this.$router.push({
         name: 'Profile',
-        params: {
-          propUser : user
+        params:{
+          nickname: this.post.user.nickname
         }
     })
     }
@@ -94,11 +98,12 @@ export default {
 <style scoped>
 .post {
   position: relative;
+  font-size: 1.5em;
   width: 100%;
   height: 100%;
 }
 video{
-  width: 50%;
+  width: 100%;
   height: auto;
   position: relative;
 }
@@ -106,15 +111,37 @@ video{
 ul{
   list-style: none;
 }
+.content{
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%;
+}
+.text{
+  font-family: Avenir, Helvetica, Arial, sans-serif;
+  font-size: 1.5em;
+  text-align: left;
+}
 
-.profilePhoto{
+#date{
+  font-size: 0.7em;
+  color: #686868;
+}
+
+.hashtags{
+  color: #3F729B;
+}
+.reactions{
+  font-size: 1.5em;
+}
+
+
+#like{
   width: 5%;
   height: auto;
-  border-radius: 50%;
 }
-
-.hashtag{
-  color: blue;
+#comment{
+  width: 5%;
+  height: auto;
 }
-
 </style>

@@ -13,7 +13,6 @@
 import getPosts from '../services/postService'
 import Post from "./Post";
 
-
 export default({
   name: "TrendingFeed",
   data: function(){

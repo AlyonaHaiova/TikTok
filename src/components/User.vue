@@ -10,21 +10,14 @@
 </template>
 
 <script>
-
-import getUser from '../services/userService'
-
 export default {
   name: "User",
-  data: function () {
-    return {
-      user: {}
-    }
+  props: {
+    user: Object
   },
-  created(){
-    this.user = getUser()
-  }
 };
 </script>
+
 
 <style scoped>
 .user{

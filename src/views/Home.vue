@@ -5,8 +5,6 @@
 </template>
 
 <script>
-
-
 import TrendingFeed from "../components/TrendingFeed";
 export default {
   name: "Home",
