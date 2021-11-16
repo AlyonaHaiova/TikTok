@@ -1,11 +1,9 @@
 <template>
   <div class = "user">
-    <span>
       <div class = "imageWrapper">
-        <img class = "profilePhoto" v-bind:src = user.photo />
+        <img class = "profilePhoto" v-bind:src = user.avatar />
       </div>
-    <p id = "nickname">{{user.nickname}}</p>
-    </span>
+      <p id = "nickname">{{user.nickName}}</p>
   </div>
 </template>
 
@@ -18,27 +16,29 @@ export default {
 };
 </script>
 
-
 <style scoped>
-.user{
+.user {
   display: flex;
-  justify-content: center;
+  justify-content: left;
 }
-.imageWrapper{
+.imageWrapper {
+  float: left;
+  margin-right: 1.5em;
+  margin-bottom: 1em;
   width: 100px;
   height: 100px;
   position: relative;
   overflow: hidden;
   border-radius: 50%;
 }
-.profilePhoto{
+.profilePhoto {
   display: inline;
   margin: 0 auto;
   height: auto;
   width: 100%;
 }
-
-#nickname{
-
+#nickname {
+  font-size: 1.5em;
+  font-weight: bold;
 }
 </style>

@@ -1,27 +1,14 @@
-import getHashtags from "./hashtagService"
+import axios from "axios";
 
-
-const getUserPost = (user) => {
-  const post = {
-    id: 1,
-    text: 'That was an amazing holiday',
-    video: '/img/video/v1.mp4',
-    likes: Math.floor(Math.random() * 100),
-    comments: Math.floor(Math.random() * 100),
-    publishedAt:  new Date(2021, 12, 15, 17, 23, 42),
-    hashtags: getHashtags,
-    user: user
-  }
-  return post
+export const getUserFeed = async nickname => {
+  const response = await axios.get(`https://tiktok33.p.rapidapi.com/user/feed/${nickname}`, {
+    headers: {
+      'x-rapidapi-host': 'tiktok33.p.rapidapi.com',
+      'x-rapidapi-key': '22702332fdmsh5dfc8b6262337b7p113c92jsn40d1f2e67a4a'
+    }
+  });
+  return response.data
 }
 
-const getUserPosts = (user) => {
-  console.log(user)
-  const posts = []
-  for (let i = 0; i < 10; i++){
-    posts.push(getUserPost(user))
-  }
-  return posts
-}
 
-export {getUserPosts}
+

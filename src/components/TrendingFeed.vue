@@ -3,27 +3,28 @@
     <ul>
       <Post
         v-for="post of this.posts" :key="post.id"
-        v-bind:post="post"
-      />
+        v-bind:post="post"/>
     </ul>
+    <button id = "more" v-on:click="seeMore">More</button>
   </div>
 </template>
 
 <script>
-import getPosts from '../services/postService'
 import Post from "./Post";
 
 export default({
   name: "TrendingFeed",
-  data: function(){
-    return{posts: []}
+  props: {
+    posts: []
   },
   components: {
-    Post,
+    Post
   },
-  created(){
-    this.posts = getPosts()
-  },
+  methods:{
+    seeMore(){
+
+    }
+  }
 });
 </script>
 
@@ -37,8 +38,12 @@ export default({
   transform: translate3d(0, 0, 0);
   transition: transform 200ms ease;
 }
-
-ul{
-  list-style: none;
+#more {
+  width: 30%;
+  height: 15%;
+  margin-bottom: 2em;
+  font-size: 1.5em;
+  background-color: #212121;
+  color: #FFF;
 }
 </style>

@@ -1,26 +1,12 @@
-import getUser from "./userService";
-import getHashtags from "./hashtagService"
+import axios from "axios";
 
-const getPost = () => {
-  const post = {
-    id: 1,
-    text: 'That was an amazing holiday. You should be here too',
-    video: '/img/video/v1.mp4',
-    likes: Math.floor(Math.random() * 100),
-    comments: Math.floor(Math.random() * 100),
-    publishedAt:  new Date(2021, 12, 15, 17, 23, 42),
-    hashtags: getHashtags,
-    user: getUser('alyona')
-  }
-  return post
+export const getTrendingFeed = async () => {
+  const response = await axios.get('https://tiktok33.p.rapidapi.com/trending/feed', {
+    headers: {
+      'x-rapidapi-host': 'tiktok33.p.rapidapi.com',
+      'x-rapidapi-key': '22702332fdmsh5dfc8b6262337b7p113c92jsn40d1f2e67a4a'
+    }
+  });
+  return response.data
 }
-
-const getPosts = () => {
-  const posts = []
-  for (let i = 0; i < 10; i++){
-    posts.push(getPost())
-  }
-  return posts
-}
-export default getPosts
 

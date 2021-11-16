@@ -1,21 +1,15 @@
+import axios from "axios";
 
-const users = [
-  {id: 1, nickname: 'alyona', photo: '/img/pictures/photo1.jpg'},
-  {id: 2,nickname: 'kate', photo: '/img/pictures/photo1.jpg'},
-  {id: 3,nickname: 'max', photo: '/img/pictures/photo1.jpg'},
-  {id: 4,nickname: 'andriy', photo: '/img/pictures/photo1.jpg'},
-  {id: 5,nickname: 'lena', photo: '/img/pictures/photo1.jpg'}
-]
+export const getUserInfo = async nickname => {
 
-const getUser = (nickname) => {
-  return users.filter(u => u.nickname === nickname)[0]
+  const response = await axios.get(`https://tiktok33.p.rapidapi.com/user/info/${nickname}`,{
+  headers: {
+      'x-rapidapi-host': 'tiktok33.p.rapidapi.com',
+      'x-rapidapi-key': '22702332fdmsh5dfc8b6262337b7p113c92jsn40d1f2e67a4a'
+  }
+  });
+return response.data
 }
-
-export default getUser
-
-
-
-
 
 
 
