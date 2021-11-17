@@ -52,7 +52,7 @@ For making requests is used axios library.
 * postService : returns trending feed for the home page
 * userService : returns user by name
 * userFeedService : returns user feed
-###***Important note!*** 
+### ***Important note!*** 
 because of API problems request getUserFeed does't work properly. That's why userFeedService is not used at the moment. 
 Instead of this user feed is took from trending feed by filtering with user's name.
 
