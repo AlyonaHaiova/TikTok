@@ -25,18 +25,18 @@ This is a TikTok clone application. It has 2 pages :
 * [Home Page](#home)
 * [Profile Page](#profile)
 
-####Home
+#### Home
 On the home page you can see trending feed. There are 30 tiktok [posts](#post).
 Pagination is included, so automatically only 5 posts appear. 
 Then you can add 5 posts per click on the button "Load More".
 
-#####Profile
+##### Profile
 On the profile page you can see:
 * User information : nickname, photo, followers count, followings count, user's videos count.
 * User feed : [posts](#post) this user created.
 
 
-####Post
+#### Post
 Post includes :
  - Video
  - Text in description
@@ -45,7 +45,7 @@ Post includes :
  - Likes and comments count
 
 
-##API
+## API
 All requests to API are written in src/services folder.
 API that is used - 'TikTok' on the Rapid API.
 For making requests is used axios library.
