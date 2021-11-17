@@ -45,7 +45,7 @@ Post includes :
  - Likes and comments count
 
 
-###API
+##API
 All requests to API are written in src/services folder.
 API that is used - 'TikTok' on the Rapid API.
 For making requests is used axios library.
