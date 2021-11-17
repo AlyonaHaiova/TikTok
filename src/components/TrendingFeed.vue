@@ -2,10 +2,10 @@
   <div class="trendingFeed">
     <ul>
       <Post
-        v-for="post of this.posts" :key="post.id"
+        v-for="post of this.paginatedPosts" :key="post.id"
         v-bind:post="post"/>
     </ul>
-    <button id="more" class="waves-button-input" v-on:click="seeMore">More</button>
+    <button v-if="this.currentPage * this.maxPerPage < this.posts.length" id="more" class="waves-button-input" @click="loadMore">Load More</button>
   </div>
 </template>
 
@@ -17,14 +17,26 @@ export default({
   props: {
     posts: []
   },
+  data() {
+    return {
+      currentPage: 1,
+      maxPerPage: 5,
+    };
+
+  },
   components: {
     Post,
   },
-  methods: {
-    seeMore() {
-
+  computed:{
+    paginatedPosts() {
+      return this.posts.slice(0, this.currentPage * this.maxPerPage);
     }
-  }
+  },
+  methods: {
+    loadMore() {
+      this.currentPage++;
+    },
+  },
 });
 </script>
 
