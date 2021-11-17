@@ -1,6 +1,6 @@
 <template>
   <div class="row">
-    <div class="col s0 m1 l1"></div>
+    <div class="col m1 l1"></div>
     <div class="col s12 m10 l10">
       <div class="post">
         <li>
@@ -23,7 +23,7 @@
         </li>
       </div>
     </div>
-    <div class="col s0 m1 l1"></div>
+    <div class="col m1 l1"></div>
   </div>
 </template>
 
@@ -116,6 +116,7 @@ video {
   margin-right: auto;
   width: 50%;
 }
+
 .card-content {
   text-align: left;
 }
@@ -142,5 +143,11 @@ video {
 #comment {
   width: 5%;
   height: auto;
+}
+
+@media screen and (max-width: 700px) {
+  .card {
+    width: 100%;
+  }
 }
 </style>

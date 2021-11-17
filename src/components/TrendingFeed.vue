@@ -60,4 +60,11 @@ export default({
   background-color: #212121;
   color: #FFF;
 }
+
+@media screen and (max-width: 700px) {
+  #more {
+    width: 80%;
+    height: 10%;
+  }
+}
 </style>
