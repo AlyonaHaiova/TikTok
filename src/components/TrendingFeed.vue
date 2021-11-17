@@ -5,7 +5,7 @@
         v-for="post of this.posts" :key="post.id"
         v-bind:post="post"/>
     </ul>
-    <button id = "more" v-on:click="seeMore">More</button>
+    <button id="more" class="waves-button-input" v-on:click="seeMore">More</button>
   </div>
 </template>
 
@@ -18,10 +18,10 @@ export default({
     posts: []
   },
   components: {
-    Post
+    Post,
   },
-  methods:{
-    seeMore(){
+  methods: {
+    seeMore() {
 
     }
   }
@@ -39,10 +39,12 @@ export default({
   transition: transform 200ms ease;
 }
 #more {
-  width: 30%;
+  width: 40%;
   height: 15%;
   margin-bottom: 2em;
-  font-size: 1.5em;
+  padding: 0.7em;
+  font-size: 2.5em;
+  font-weight: bold;
   background-color: #212121;
   color: #FFF;
 }

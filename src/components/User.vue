@@ -1,9 +1,9 @@
 <template>
-  <div class = "user">
-      <div class = "imageWrapper">
-        <img class = "profilePhoto" v-bind:src = user.avatar />
+  <div class="user">
+      <div class="imageWrapper">
+        <img class="profilePhoto" v-bind:src=user.avatar />
       </div>
-      <p id = "nickname">{{user.nickName}}</p>
+      <p id ="nickname">{{ user.nickName }}</p>
   </div>
 </template>
 
@@ -11,7 +11,7 @@
 export default {
   name: "User",
   props: {
-    user: Object
+    user: Object,
   },
 };
 </script>

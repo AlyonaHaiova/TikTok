@@ -1,35 +1,36 @@
 <template>
   <div class="home">
-   <TrendingFeed v-bind:posts="trendingFeedInfo"/>
+      <TrendingFeed v-bind:posts="trendingFeedInfo"/>
   </div>
 </template>
 
 <script>
 import TrendingFeed from "../components/TrendingFeed";
-import {getTrendingFeed} from "@/services/postService";
+import { getTrendingFeed } from "@/services/postService";
 
 export default {
   name: "Home",
   components: {
-    TrendingFeed
+    TrendingFeed,
   },
-  data(){
-    return{
+  data() {
+    return {
       trendingFeedInfo: {
-        trendingFeed: {}
-      }
-    }
+        trendingFeed: {},
+      },
+    };
   },
-  methods:{
-    async fetchTrendingFeedInfo(){
-      this.trendingFeedInfo = await getTrendingFeed()
-    }
+  methods: {
+    async fetchTrendingFeedInfo() {
+      this.trendingFeedInfo = await getTrendingFeed();
+    },
   },
-  created(){
-    try{
-      this.fetchTrendingFeedInfo()
-    } catch (error){
-      console.log(error)
+  created() {
+    try {
+      this.fetchTrendingFeedInfo();
+    }
+    catch (error) {
+      console.log(error);
     }
   },
 };

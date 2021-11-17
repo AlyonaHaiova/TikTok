@@ -1,26 +1,29 @@
 <template>
-  <div class = "row">
-    <div class = "col s0 m1 l1"></div>
+  <div class="row">
+    <div class="col s0 m1 l1"></div>
     <div class="col s12 m10 l10">
-      <div class = "post">
+      <div class="post">
         <li>
-          <div class = "card">
-            <Loader v-if= "loading"/>
-            <div  v-else class = "card-content">
-              <User id = "user" v-if="typeof post.authorMeta !== 'undefined'" v-bind:user="post.authorMeta" v-on:click="goToProfile"/>
-              <p class = "text">{{post.text}}</p>
+          <div class="card">
+            <Loader v-if="loading"/>
+            <div v-else class = "card-content">
+              <User id="user"  v-if="typeof post.authorMeta !== 'undefined'"  v-bind:user="post.authorMeta"  v-on:click="goToProfile"/>
+              <p class="views"  v-if="typeof post.playCount !== 'undefined'">{{ `Views:  ${post.playCount}` }}</p>
+              <p class="text">{{ post.text }}</p>
             </div>
-            <video class = "video" v-bind:src = post.videoUrl ref="vidRef" @click="togglePlay" />
-            <span class = "hashtags" v-for="tag in post.hashtags" :key="tag.id">{{ '#'+ tag.name + '        '}}</span>
+            <video class="video" autoplay v-bind:src = post.videoUrl ref="vidRef" @click="togglePlay" />
+            <span class="hashtags" v-for="tag in post.hashtags" :key="tag.id">{{ '#'+ tag.name + '        ' }}</span>
           </div>
           <span class = 'reactions'>
-            <img id = "like" src = "../../public/img/icons/like.svg"/> {{'   ' + post.diggCount}}
-            <img id = "comment" src = "../../public/img/icons/comment.svg"/>{{'   ' + post.commentCount}}
+            <img id="like" src ="../../public/img/icons/like.svg"/>
+            <span v-if="typeof post.diggCount !== 'undefined'">{{ '   ' + post.diggCount }} </span>
+            <img id="comment" src = "../../public/img/icons/comment.svg"/>
+            <span  v-if="typeof post.commentCount !== 'undefined'">{{ '   ' + post.commentCount }}</span>
           </span>
         </li>
       </div>
     </div>
-    <div class = "col s0 m1 l1"></div>
+    <div class="col s0 m1 l1"></div>
   </div>
 </template>
 
@@ -33,34 +36,36 @@ export default {
   name: "post",
   components: {
     Loader,
-    User
+    User,
   },
   props: {
     post: Object,
   },
   data() {
-    return{
-      loading: true
-    }
+    return {
+      loading: true,
+    };
   },
+
   mounted() {
-    this.loading = false
+    this.loading = false;
+    this.$refs.vidRef.play();
   },
-  methods:{
-    goToProfile(){
+  methods: {
+    goToProfile() {
       this.$router.push({
-        name: 'Profile',
-        params:{
-          nickname: this.post.authorMeta.name
-        }
-      })
+        name: "Profile",
+        params: {
+          nickname: this.post.authorMeta.name,
+        },
+      });
     },
   },
 
   setup() {
     const vidRef = ref(null);
     const state = reactive({
-      playing: false
+      playing: false,
     });
     const play = () => {
       vidRef.value.play();
@@ -100,6 +105,7 @@ video {
   height: auto;
   position: relative;
 }
+
 #user {
   position: relative;
   left: 0px;
@@ -113,13 +119,18 @@ video {
 .card-content {
   text-align: left;
 }
+.views {
+  margin-bottom: 0.3em;
+  font-size: 0.7em;
+  color: #686868;
+}
 .text {
   font-family: Avenir, Helvetica, Arial, sans-serif;
-  font-size: 1em;
+  font-size: 1.2em;
   text-align: left;
 }
 .hashtags {
-  color: #3F729B;
+  color: #3f729b;
 }
 .reactions {
   font-size: 1.5em;

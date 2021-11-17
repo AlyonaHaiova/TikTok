@@ -1,9 +1,9 @@
 <template>
-  <div class = "header">
-    <h1 id = "title"> Tik Tuk</h1>
+  <div class="header">
+    <h1 id="title">Tik Tuk</h1>
   </div>
-  <Home />
-  <router-view />
+  <Home/>
+  <router-view/>
 </template>
 
 <script>
@@ -24,6 +24,7 @@ export default {
 #title {
   font-family: 'Inter', sans-serif;
   font-size: 3em;
+  font-weight: bold;
   color: white;
   margin: 0;
   padding-top: 0.5em;
