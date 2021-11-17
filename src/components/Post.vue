@@ -145,7 +145,7 @@ video {
   height: auto;
 }
 
-@media screen and (max-width: 700px) {
+@media screen and (max-width: 750px) {
   .card {
     width: 100%;
   }

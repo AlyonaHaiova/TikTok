@@ -1,5 +1,5 @@
 //Not commented code can be replaced by commented one if API works properly
-
+// First version - work with API
 /*import axios from "axios";
 
 export const getUserFeed = async nickname => {
@@ -11,10 +11,12 @@ export const getUserFeed = async nickname => {
   });
   return response.data
 }*/
-
+// Second version - user-feed.json
+/*
 const userFeedData = require('../user-feed.json')
 const userFeed = userFeedData.itemList
 export { userFeed }
+*/
 
 
 

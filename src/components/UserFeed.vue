@@ -1,7 +1,7 @@
 <template>
   <div class="userFeed">
     <ul>
-       <UserPost
+       <Post
            v-for="post of this.userFeedInfo" :key="post.id"
            v-bind:post="post" />
      </ul>
@@ -9,8 +9,9 @@
 </template>
 
 <script>
-import UserPost from "./UserPost";
-import { userFeed } from "@/services/userFeedService";
+import Post from "./Post";
+import { getTrendingFeed } from "@/services/postService";
+//import { userFeed } from "@/services/userFeedService";
 
 export default {
   name: "UserFeed",
@@ -25,11 +26,17 @@ export default {
     user: Object,
   },
   components: {
-    UserPost,
+    Post,
+  },
+  methods : {
+    async fetchUserFeedInfo() {
+      let trendingFeed = await getTrendingFeed();
+      this.userFeedInfo = trendingFeed.filter( post => post.authorMeta.name === this.$route.params.nickname)
+    },
   },
   created() {
     try {
-      this.userFeedInfo = userFeed
+      this.fetchUserFeedInfo()
     } catch (error){
       console.log(error);
     }
